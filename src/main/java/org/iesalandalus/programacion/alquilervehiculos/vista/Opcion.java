@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.alquilervehiculos.vista;
 
+import javax.naming.OperationNotSupportedException;
+
 public enum Opcion {
 	SALIR("Salir"), INSERTAR_CLIENTE("Insertar cliente"), INSERTAR_TURISMO("Insertar turismo"),
 	INSERTAR_ALQUILER("Insertar alquiler"), BUSCAR_CLIENTE("Buscar cliente"), BUSCAR_TURISMO("Buscar turismo"),
@@ -23,9 +25,9 @@ public enum Opcion {
 		return ordinal > 0 && Opcion.values().length > ordinal;
 	}
 	
-	public Opcion get(int ordinal) {
+	public Opcion get(int ordinal) throws OperationNotSupportedException {
 		if (!(esOrdinalValido(ordinal))) {
-			throw new IllegalArgumentException("ERROR: El ordinel no es valido.");
+			throw new OperationNotSupportedException("ERROR: El ordinal no es valido.");
 		}
 		esOrdinalValido(ordinal);
 		return Opcion.values()[ordinal];
