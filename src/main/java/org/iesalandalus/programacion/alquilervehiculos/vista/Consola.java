@@ -26,7 +26,7 @@ public class Consola {
 
 	}
 	public static void mostrarMenu() {
-		mostrarCabezera("ELIGA UNA DE LAS OPCIONES");
+		mostrarCabezera("Este es un programa para manejar los alquileres de turismos realizados por clientes");
 		for(int i = 0; i < Opcion.values().length; i++) {
 			System.out.printf("%n%s. %s", i, Opcion.values()[i]);
 

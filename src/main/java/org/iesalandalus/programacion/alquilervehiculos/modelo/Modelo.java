@@ -20,8 +20,7 @@ public class Modelo {
 	private Alquileres alquileres;
 	
 	public Modelo() {
-		comenzar();
-		terminar();
+		
 	}
 	
 	public void comenzar() {
@@ -30,7 +29,7 @@ public class Modelo {
 		alquileres= new Alquileres();
 	}
 	public void terminar() {
-		System.out.printf("EL modelo ha sido creado");
+		System.out.printf("EL modelo ha terminado");
 	}
 	
 	public void insertar(Cliente cliente) {

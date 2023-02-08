@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Turismo {
 	private static final String ER_MARCA = "^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$|^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)(\\-[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)$|^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$|^([A-ZÁÉÍÓÚÑ]+)+$";
-	private static final String ER_MATRICULA = "[0-9]{4}[B-Z][A-Z]{2}";
+	private static final String ER_MATRICULA = "[0-9]{4}[QWRTYPSDFGHJKLZXCVBNM]{3}";
+
 
 	private String marca;
 	private String modelo;
