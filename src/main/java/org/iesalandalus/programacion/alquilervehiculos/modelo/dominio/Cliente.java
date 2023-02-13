@@ -34,7 +34,7 @@ public class Cliente {
 		if (nombre == null) {
 			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");
 		}
-		if (!nombre.matches(ER_NOMBRE)) {
+		if (!(nombre.matches(ER_NOMBRE))) {
 			throw new IllegalArgumentException("ERROR: El nombre no tiene un formato válido.");
 		}
 		this.nombre = nombre;

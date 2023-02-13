@@ -20,16 +20,16 @@ public enum Opcion {
 		if (texto.isBlank()) {
 			throw new IllegalArgumentException("ERROR: El texto no puede estar en blanco.");
 		}
+		this.texto = texto;
 	}
 	private boolean esOrdinalValido(int ordinal) {
-		return ordinal > 0 && Opcion.values().length > ordinal;
+		return ordinal >= 0 && Opcion.values().length > ordinal;
 	}
 	
 	public Opcion get(int ordinal) throws OperationNotSupportedException {
 		if (!(esOrdinalValido(ordinal))) {
 			throw new OperationNotSupportedException("ERROR: El ordinal no es valido.");
 		}
-		esOrdinalValido(ordinal);
 		return Opcion.values()[ordinal];
 	}
 	public String toString() {

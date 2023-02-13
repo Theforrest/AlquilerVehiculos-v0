@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.alquilervehiculos.vista;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -19,13 +20,18 @@ public class Vista {
 		}
 		this.controlador = controlador;
 	}
-	public void comenzar() {
+	public void comenzar() throws OperationNotSupportedException {
 		Opcion opcion;
 		do {
 		Consola.mostrarMenu();
 		opcion = Consola.elegirOpcion();
-		ejecutar(opcion);
-		} while(opcion.equals(Opcion.SALIR));
+		try {
+			ejecutar(opcion);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			System.out.printf("%n%s%n%n", e.getMessage());
+		}
+		} while(!(opcion.equals(Opcion.SALIR)));
 		
 	}
 	
@@ -85,10 +91,12 @@ public class Vista {
 			break;
 		case LISTAR_ALQUILERES_TURISMO:
 			listarAlquileresTurismo();
+			
 			break;	
 		default:
 			System.out.print("Algo a ido mal");
 			break;
+			
 	}
 	}
 	
@@ -113,24 +121,24 @@ public class Vista {
 	}
 	private void buscarCliente() {
 		Consola.mostrarCabezera("Buscar cliente");
-		Cliente cliente = Consola.leerCliente();
-		controlador.buscar(cliente);
+		Cliente cliente = Consola.leerClienteDni();
+		System.out.printf("%s%n",(controlador.buscar(cliente) == null) ? "Cliente no encontrado" : controlador.buscar(cliente));
 	}
 
 	private void buscarTurismo() {
 		Consola.mostrarCabezera("Buscar turismo");
-		Turismo turismo = Consola.leerTurismo();
-		controlador.buscar(turismo);
+		Turismo turismo = Consola.leerTurismoMatricula();
+		System.out.printf("%s%n",(controlador.buscar(turismo) == null) ? "Turismo no encontrado" : controlador.buscar(turismo));
 	}
 
 	private void buscarAlquiler() {
 		Consola.mostrarCabezera("Buscar alquiler");
 		Alquiler alquiler = Consola.leerAlquiler();
-		controlador.buscar(alquiler);
+		System.out.printf("%s%n", (controlador.buscar(alquiler) == null) ? "Alquiler no encontrado" : controlador.buscar(alquiler));
 	}
 	private void modificarCliente() {
 		Consola.mostrarCabezera("Modificar cliente");
-		Cliente cliente = Consola.leerCliente();
+		Cliente cliente = Consola.leerClienteDni();
 		String nombre = Consola.leerNombre();
 		String telefono = Consola.leerTelefono();
 
@@ -150,7 +158,7 @@ public class Vista {
 	}
 	private void borrarCliente()  {
 		Consola.mostrarCabezera("Borrar cliente");
-		Cliente cliente = Consola.leerCliente();
+		Cliente cliente = Consola.leerClienteDni();
 		try {
 			controlador.borrar(cliente);
 		} catch (OperationNotSupportedException e) {
@@ -160,7 +168,7 @@ public class Vista {
 	}
 	private void borrarTurismo()  {
 		Consola.mostrarCabezera("Borrar turismo");
-		Turismo turismo = Consola.leerTurismo();
+		Turismo turismo = Consola.leerTurismoMatricula();
 		try {
 			controlador.borrar(turismo);
 		} catch (OperationNotSupportedException e) {
@@ -175,24 +183,39 @@ public class Vista {
 	}
 	private void listarClientes() {
 		Consola.mostrarCabezera("Listar Clientes");
-		controlador.getClientes();
+		List<Cliente> clientes = controlador.getClientes();
+		for (int i = 0; i < clientes.size(); i++) {
+			System.out.printf("%d. %s%n", i+1, clientes.get(i));
+		}
 	}
 	private void listarTurismos() {
 		Consola.mostrarCabezera("Listar Turismos");
-		controlador.getTurismos();	
+		List<Turismo> turismos = controlador.getTurismos();	
+		for (int i = 0; i < turismos.size(); i++) {
+			System.out.printf("%d. %s%n", i+1, turismos.get(i));
+		}
 	}
 	private void listarAlquileres() {
 		Consola.mostrarCabezera("Listar alquileres");
-		controlador.getAlquileres();
+		List<Alquiler> alquileres = controlador.getAlquileres();	
+		for (int i = 0; i < alquileres.size(); i++) {
+			System.out.printf("%d. %s%n", i+1, alquileres.get(i));
+		}
 	}
 	private void listarAlquileresCliente() {
 		Consola.mostrarCabezera("Listar alquileres de cliente");
-		Cliente cliente = Consola.leerCliente();
-		controlador.getAlquileres(cliente);
+		Cliente cliente = Consola.leerClienteDni();
+		List<Alquiler> alquileres = controlador.getAlquileres(cliente);	
+		for (int i = 0; i < alquileres.size(); i++) {
+			System.out.printf("%d. %s%n", i+1, alquileres.get(i));
+		}
 	}
 	private void listarAlquileresTurismo() {
 		Consola.mostrarCabezera("Listar alquileres de cliente");
-		Turismo turismo = Consola.leerTurismo();
-		controlador.getAlquileres(turismo);
+		Turismo turismo = Consola.leerTurismoMatricula();
+		List<Alquiler> alquileres = controlador.getAlquileres(turismo);	
+		for (int i = 0; i < alquileres.size(); i++) {
+			System.out.printf("%d. %s%n", i+1, alquileres.get(i));
+		}
 	}
 }

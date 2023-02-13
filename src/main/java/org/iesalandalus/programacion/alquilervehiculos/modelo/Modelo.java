@@ -29,7 +29,7 @@ public class Modelo {
 		alquileres= new Alquileres();
 	}
 	public void terminar() {
-		System.out.printf("EL modelo ha terminado");
+		System.out.printf("%nEL modelo ha terminado%n");
 	}
 	
 	public void insertar(Cliente cliente) {
@@ -59,20 +59,34 @@ public class Modelo {
 		if (turismos.buscar(alquiler.getTurismo()) == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el turismo del alquiler.");
 		}
+		
+
 		try {
-			alquileres.insertar(new Alquiler(alquiler));;
+			alquileres.insertar(new Alquiler(buscar(alquiler.getCliente()), buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));;
 		} catch (OperationNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
 	public Cliente buscar(Cliente cliente) {
+		if (clientes.buscar(cliente) == null) {
+			return null;
+
+		}
 		return new Cliente(clientes.buscar(cliente));
 	}
 	public Turismo buscar(Turismo turismo) {
+		if (turismos.buscar(turismo) == null) {
+			return null;
+
+		}
 		return new Turismo(turismos.buscar(turismo));
 	}
 	public Alquiler buscar(Alquiler alquiler) {
+		if (alquileres.buscar(alquiler) == null) {
+			return null;
+
+		}
 		return new Alquiler(alquileres.buscar(alquiler));
 	}
 	public void modificar(Cliente cliente, String nombre, String telefono) {

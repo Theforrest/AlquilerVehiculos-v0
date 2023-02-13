@@ -30,7 +30,10 @@ public class Alquiler {
 		setCliente(new Cliente(alquiler.getCliente()));
 		setTurismo(new Turismo(alquiler.getTurismo()));
 		setFechaAlquiler(alquiler.getFechaAlquiler());
-		setFechaDevolucion(alquiler.getFechaDevolucion());
+		if (alquiler.getFechaDevolucion() != null) {
+			setFechaDevolucion(alquiler.getFechaDevolucion());
+		}
+		
 	}
 
 	public LocalDate getFechaAlquiler() {
@@ -96,8 +99,8 @@ public class Alquiler {
 	public int getPrecio() {
 		int precio = 0;
 		if (fechaDevolucion != null) {
-			precio = (int) (ChronoUnit.DAYS.between(fechaAlquiler, fechaDevolucion) * PRECIO_DIA)
-					+ (turismo.getCilindrada() / 10 * (int)(ChronoUnit.DAYS.between(fechaAlquiler, fechaDevolucion)));
+			precio = ((PRECIO_DIA)
+					+ turismo.getCilindrada() / 10) * (int)(ChronoUnit.DAYS.between(fechaAlquiler, fechaDevolucion));
 		}
 		
 
