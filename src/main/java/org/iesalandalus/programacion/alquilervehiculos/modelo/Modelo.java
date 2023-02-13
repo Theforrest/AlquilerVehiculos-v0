@@ -62,7 +62,7 @@ public class Modelo {
 		
 
 		try {
-			alquileres.insertar(new Alquiler(buscar(alquiler.getCliente()), buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));;
+			alquileres.insertar(new Alquiler(clientes.buscar(alquiler.getCliente()), turismos.buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));;
 		} catch (OperationNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();

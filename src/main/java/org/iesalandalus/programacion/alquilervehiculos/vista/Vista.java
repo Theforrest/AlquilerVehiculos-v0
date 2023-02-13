@@ -20,7 +20,7 @@ public class Vista {
 		}
 		this.controlador = controlador;
 	}
-	public void comenzar() throws OperationNotSupportedException {
+	public void comenzar()  {
 		Opcion opcion;
 		do {
 		Consola.mostrarMenu();
@@ -116,7 +116,12 @@ public class Vista {
 	private void insertarAlquiler() {
 		Consola.mostrarCabezera("Insertar turismo");
 		Alquiler alquiler = Consola.leerAlquiler();
-		controlador.insertar(alquiler);
+		try {
+			controlador.insertar(alquiler);
+		} catch (OperationNotSupportedException e) {
+			// TODO Auto-generated catch block
+			System.out.print(e.getMessage());
+		}
 
 	}
 	private void buscarCliente() {

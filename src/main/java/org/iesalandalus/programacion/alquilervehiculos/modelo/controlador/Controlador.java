@@ -25,10 +25,10 @@ public class Controlador {
 		this.modelo = modelo;
 	}
 
-	public void comenzar() throws OperationNotSupportedException {
+	public void comenzar()  {
 		modelo.comenzar();
 		vista.comenzar();
-		terminar();
+		
 	}
 	
 	public void terminar() {
@@ -45,13 +45,10 @@ public class Controlador {
 
 	}
 
-	public void insertar(Alquiler alquiler) {
-		try {
+	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
+		
 			modelo.insertar(alquiler);
-		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 	}
 	public Cliente buscar(Cliente cliente) {
