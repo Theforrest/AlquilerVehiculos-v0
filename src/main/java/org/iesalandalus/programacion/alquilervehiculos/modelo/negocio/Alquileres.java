@@ -95,7 +95,7 @@ public class Alquileres {
 		if (!(coleccionAlquileres.contains(alquiler))) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún alquiler igual.");
 		}
-		coleccionAlquileres.get(coleccionAlquileres.indexOf(alquiler)).devolver(fechaDevolucion);;
+		coleccionAlquileres.get(coleccionAlquileres.indexOf(alquiler)).devolver(fechaDevolucion);
 		
 	}
 

@@ -28,7 +28,6 @@ public class Vista {
 		try {
 			ejecutar(opcion);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			System.out.printf("%n%s%n%n", e.getMessage());
 		}
 		} while(!(opcion.equals(Opcion.SALIR)));
@@ -43,7 +42,7 @@ public class Vista {
 		case SALIR:
 			break;
 		case INSERTAR_CLIENTE:
-			insertarCliente();;
+			insertarCliente();
 			break;
 		case INSERTAR_TURISMO:
 			insertarTurismo();
@@ -119,7 +118,6 @@ public class Vista {
 		try {
 			controlador.insertar(alquiler);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			System.out.print(e.getMessage());
 		}
 
@@ -157,7 +155,6 @@ public class Vista {
 		try {
 			controlador.devolver(alquiler, fechaDevolucion);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -167,7 +164,6 @@ public class Vista {
 		try {
 			controlador.borrar(cliente);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -177,7 +173,6 @@ public class Vista {
 		try {
 			controlador.borrar(turismo);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}

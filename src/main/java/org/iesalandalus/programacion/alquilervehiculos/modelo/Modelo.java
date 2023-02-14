@@ -19,9 +19,7 @@ public class Modelo {
 	private Turismos turismos;
 	private Alquileres alquileres;
 	
-	public Modelo() {
-		
-	}
+	
 	
 	public void comenzar() {
 		clientes = new Clientes();
@@ -37,15 +35,13 @@ public class Modelo {
 		try {
 			clientes.insertar(new Cliente(cliente));
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
 	public void insertar(Turismo turismo) {
 		try {
-			turismos.insertar(new Turismo(turismo));;
+			turismos.insertar(new Turismo(turismo));
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -62,9 +58,8 @@ public class Modelo {
 		
 
 		try {
-			alquileres.insertar(new Alquiler(clientes.buscar(alquiler.getCliente()), turismos.buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));;
+			alquileres.insertar(new Alquiler(clientes.buscar(alquiler.getCliente()), turismos.buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -93,7 +88,6 @@ public class Modelo {
 		try {
 			clientes.modificar(cliente, nombre, telefono);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -105,7 +99,6 @@ public class Modelo {
 		try {
 			alquilerTemporal.devolver(fechaDevolucion);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
@@ -125,11 +118,10 @@ public class Modelo {
 			try {
 				alquileres.borrar(alquiler);
 			} catch (OperationNotSupportedException e) {
-				// TODO Auto-generated catch block
 				e.getMessage();
 			}
 		}
-			turismos.borrar(turismo);;
+			turismos.borrar(turismo);
 		
 		
 		
@@ -138,7 +130,6 @@ public class Modelo {
 		try {
 			alquileres.borrar(alquiler);
 		} catch (OperationNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}

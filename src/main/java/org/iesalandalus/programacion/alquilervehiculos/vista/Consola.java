@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.alquilervehiculos.vista;
 
 import java.time.LocalDate; 
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -12,8 +13,8 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
 
-	private static final String PATRON_FECHA = "((((([0-1]\\d)|2[0-8])-(02))|(([0-2]\\d)|30)-(04|06|09|11))|((([0-2]\\d)|3[0-1])-(01|03|05|07|08|10|12)))-(\\d{4})";
-	private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	private static final String PATRON_FECHA = "dd-MM-yyyy";
+	private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern(PATRON_FECHA);
 	private Consola() {}
 	
 	public static void mostrarCabezera(String mensaje) {
@@ -44,12 +45,19 @@ public class Consola {
 	}
 	private static LocalDate leerFecha(String mensaje) {
 		String fecha;
-		do {
-			System.out.printf("%n%s: ", mensaje);
-			fecha = Entrada.cadena();
-		} while (!(fecha.matches(PATRON_FECHA)));
-		return LocalDate.parse(fecha, FORMATO_FECHA);
-
+		
+			
+			do {
+				System.out.printf("%n%s: ", mensaje);
+				fecha = Entrada.cadena();
+			try {
+	           return  LocalDate.parse(fecha, FORMATO_FECHA);
+	        } catch (DateTimeParseException e) {
+	        	System.out.printf("%nFormato de fecha incorrecta");
+	        	fecha = null;
+	        }} while (fecha == null);
+			return null;
+		
 	}
 	public static Opcion elegirOpcion()  {
 		Opcion opcion = Opcion.BUSCAR_CLIENTE;
@@ -59,7 +67,6 @@ public class Consola {
 			try {
 				opcion = opcion.get(i);
 			} catch (OperationNotSupportedException e) {
-				// TODO Auto-generated catch block
 				System.out.printf("%n%s%n%n", e.getMessage());
 			}
 		
@@ -72,12 +79,10 @@ public class Consola {
 		return Cliente.getClienteConDni(dni);
 	}
 	public static String leerNombre() {
-		String nombre = leerCadena("Escriba el nombre del cliente");
-		return nombre;
+		return leerCadena("Escriba el nombre del cliente");
 	}
 	public static String leerTelefono() {
-		String telefono = leerCadena("Escriba el telefono del cliente");
-		return telefono;
+		return leerCadena("Escriba el telefono del cliente");
 	}
 	public static Cliente leerCliente() {
 		return new Cliente(leerNombre() , leerCadena("Escriba el dni"), leerTelefono());
@@ -101,9 +106,7 @@ public class Consola {
 		return new Alquiler(cliente, turismo, fechaAlquiler);
 	}
 	public static LocalDate leerFechaDevolucion() {
-		LocalDate fechadevolucion= leerFecha("Escriba la fecha de devolucion");
-
-		return fechadevolucion;
+		return leerFecha("Escriba la fecha de devolucion");
 	}
 	
 }

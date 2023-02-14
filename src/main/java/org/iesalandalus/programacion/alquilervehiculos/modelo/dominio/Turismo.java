@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Turismo {
 	private static final String ER_MARCA = "^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$|^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)(\\-[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)$|^([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)([A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$|^([A-ZÁÉÍÓÚÑ]+)+$";
-	private static final String ER_MATRICULA = "[0-9]{4}[QWRTYPSDFGHJKLZXCVBNM]{3}";
+	private static final String ER_MATRICULA = "\\d{4}[QWRTYPSDFGHJKLZXCVBNM]{3}";
 
 
 	private String marca;
@@ -105,7 +105,7 @@ public class Turismo {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s (%sCV) - %s", marca, modelo, cilindrada, matricula, "disponible");
+		return String.format("%s %s (%sCV) - %s", marca, modelo, cilindrada, matricula);
 	}
 
 }

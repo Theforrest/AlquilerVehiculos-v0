@@ -64,9 +64,8 @@ public class Clientes {
 			throw new OperationNotSupportedException("ERROR: No existe ningún cliente con ese DNI.");
 		}
 
-		if ((nombre == null || nombre.isBlank()) && (telefono == null || telefono.isBlank())) {
+		if (!((nombre == null || nombre.isBlank()) && (telefono == null || telefono.isBlank()))) {
 
-		} else {
 			if (nombre == null || nombre.isBlank()) {
 				buscar(cliente).setTelefono(telefono);
 			} else {
@@ -77,6 +76,7 @@ public class Clientes {
 					buscar(cliente).setTelefono(telefono);
 				}
 			}
+		
 		}
 
 	}
