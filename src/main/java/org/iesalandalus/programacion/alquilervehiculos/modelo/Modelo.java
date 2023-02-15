@@ -30,20 +30,16 @@ public class Modelo {
 		System.out.printf("%nEL modelo ha terminado%n");
 	}
 	
-	public void insertar(Cliente cliente) {
+	public void insertar(Cliente cliente) throws OperationNotSupportedException {
 		
-		try {
-			clientes.insertar(new Cliente(cliente));
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+		
+		clientes.insertar(new Cliente(cliente));
+		
 	}
-	public void insertar(Turismo turismo) {
-		try {
-			turismos.insertar(new Turismo(turismo));
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+	public void insertar(Turismo turismo) throws OperationNotSupportedException {
+		
+		turismos.insertar(new Turismo(turismo));
+		
 	}
 	public void insertar(Alquiler alquiler) throws OperationNotSupportedException {
 		if (alquiler == null) {
@@ -57,11 +53,9 @@ public class Modelo {
 		}
 		
 
-		try {
-			alquileres.insertar(new Alquiler(clientes.buscar(alquiler.getCliente()), turismos.buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+		
+		alquileres.insertar(new Alquiler(clientes.buscar(alquiler.getCliente()), turismos.buscar(alquiler.getTurismo()), alquiler.getFechaAlquiler()));
+		
 	}
 	public Cliente buscar(Cliente cliente) {
 		if (clientes.buscar(cliente) == null) {
@@ -84,23 +78,19 @@ public class Modelo {
 		}
 		return new Alquiler(alquileres.buscar(alquiler));
 	}
-	public void modificar(Cliente cliente, String nombre, String telefono) {
-		try {
-			clientes.modificar(cliente, nombre, telefono);
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
+		
+		clientes.modificar(cliente, nombre, telefono);
+		
 	}
 	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException  {
 		Alquiler alquilerTemporal = alquileres.buscar(alquiler);
 		if (alquilerTemporal == null) {
 			throw new OperationNotSupportedException("ERROR: No existe el alquiler a devolver.");
 		}
-		try {
-			alquilerTemporal.devolver(fechaDevolucion);
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+		
+		alquilerTemporal.devolver(fechaDevolucion);
+		
 	}
 	public void borrar(Cliente cliente) throws OperationNotSupportedException {
 		
@@ -115,23 +105,19 @@ public class Modelo {
 	}
 	public void borrar(Turismo turismo) throws OperationNotSupportedException {
 		for (Alquiler alquiler : alquileres.get(turismo)) {
-			try {
-				alquileres.borrar(alquiler);
-			} catch (OperationNotSupportedException e) {
-				e.getMessage();
-			}
+			
+			alquileres.borrar(alquiler);
+			
 		}
 			turismos.borrar(turismo);
 		
 		
 		
 	}
-	public void borrar(Alquiler alquiler) {
-		try {
-			alquileres.borrar(alquiler);
-		} catch (OperationNotSupportedException e) {
-			e.getMessage();
-		}
+	public void borrar(Alquiler alquiler) throws OperationNotSupportedException {
+		
+		alquileres.borrar(alquiler);
+		
 	}
 	public List<Cliente> getClientes() {
 		List<Cliente> copiaClientes = new ArrayList<>();

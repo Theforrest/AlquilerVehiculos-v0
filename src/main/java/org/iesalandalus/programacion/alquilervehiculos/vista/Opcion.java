@@ -22,17 +22,18 @@ public enum Opcion {
 		}
 		this.texto = texto;
 	}
-	private boolean esOrdinalValido(int ordinal) {
+	private static boolean esOrdinalValido(int ordinal) {
 		return ordinal >= 0 && Opcion.values().length > ordinal;
 	}
-	
-	public Opcion get(int ordinal) throws OperationNotSupportedException {
+	 
+	public static Opcion get(int ordinal) throws OperationNotSupportedException {
 		if (!(esOrdinalValido(ordinal))) {
 			throw new OperationNotSupportedException("ERROR: El ordinal no es valido.");
 		}
 		return Opcion.values()[ordinal];
 	}
+	@Override
 	public String toString() {
-		return String.format("%s", texto);
+		return String.format("%d. %s", ordinal(), texto);
 	}
 }

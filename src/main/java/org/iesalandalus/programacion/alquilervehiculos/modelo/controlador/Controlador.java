@@ -36,11 +36,11 @@ public class Controlador {
 		vista.terminar();
 	}
 	
-	public void insertar(Cliente cliente) {
+	public void insertar(Cliente cliente) throws OperationNotSupportedException {
 		modelo.insertar(cliente);
 	}
 
-	public void insertar(Turismo turismo) {
+	public void insertar(Turismo turismo) throws OperationNotSupportedException {
 		modelo.insertar(turismo);
 
 	}
@@ -62,7 +62,7 @@ public class Controlador {
 	public Alquiler buscar(Alquiler alquiler) {
 		return modelo.buscar(alquiler);
 	}
-	public void modificar(Cliente cliente, String nombre, String telefono) {
+	public void modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
 		modelo.modificar(cliente, nombre, telefono);
 	}
 	public void devolver(Alquiler alquiler, LocalDate fechaDevolucion) throws OperationNotSupportedException  {
@@ -74,7 +74,7 @@ public class Controlador {
 	public void borrar(Turismo turismo) throws OperationNotSupportedException {
 		modelo.borrar(turismo);
 	}
-	public void borrar(Alquiler alquiler) {
+	public void borrar(Alquiler alquiler) throws OperationNotSupportedException {
 		modelo.borrar(alquiler);
 	}
 	public List<Cliente> getClientes() {

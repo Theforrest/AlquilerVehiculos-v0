@@ -29,9 +29,7 @@ public class Alquileres {
 	}
 
 	public List<Alquiler> get(Cliente cliente) {
-		if (cliente == null) {
-			throw new NullPointerException("ERROR: No se puede insertar un cliente nulo.");
-		}
+		
 		List<Alquiler> copiaAlquileres = new ArrayList<>();
 		for (Alquiler alquiler : coleccionAlquileres) {
 			if (alquiler.getCliente().equals(cliente)) {
@@ -42,9 +40,7 @@ public class Alquileres {
 	}
 	
 	public List<Alquiler> get(Turismo turismo) {
-		if (turismo == null) {
-			throw new NullPointerException("ERROR: No se puede insertar un cliente nulo.");
-		}
+		
 		List<Alquiler> copiaAlquileres = new ArrayList<>();
 		for (Alquiler alquiler : coleccionAlquileres) {
 			if (alquiler.getTurismo().equals(turismo)) {
@@ -89,9 +85,6 @@ public class Alquileres {
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede devolver un alquiler nulo.");
 		}
-		if (fechaDevolucion == null) {
-			throw new NullPointerException("ERROR: No se puede insertar un alquiler nulo.");
-		}
 		if (!(coleccionAlquileres.contains(alquiler))) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún alquiler igual.");
 		}
@@ -116,9 +109,8 @@ public class Alquileres {
 		if (!(coleccionAlquileres.contains(alquiler))) {
 			throw new OperationNotSupportedException("ERROR: No existe ningún alquiler igual.");
 		}
-		if (!coleccionAlquileres.remove(buscar(alquiler))) {
-			throw new OperationNotSupportedException("ERROR: No existe ningún turismo con esa matrícula.");
-		}
+		coleccionAlquileres.remove(buscar(alquiler));
+		
 	}
 
 	

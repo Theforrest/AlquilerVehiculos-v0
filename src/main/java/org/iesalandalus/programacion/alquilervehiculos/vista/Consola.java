@@ -29,7 +29,7 @@ public class Consola {
 	public static void mostrarMenu() {
 		mostrarCabezera("Este es un programa para manejar los alquileres de turismos realizados por clientes");
 		for(int i = 0; i < Opcion.values().length; i++) {
-			System.out.printf("%n%s. %s", i, Opcion.values()[i]);
+			System.out.printf("%n%s", Opcion.values()[i]);
 
 		}
 	}
@@ -60,12 +60,12 @@ public class Consola {
 		
 	}
 	public static Opcion elegirOpcion()  {
-		Opcion opcion = Opcion.BUSCAR_CLIENTE;
+		Opcion opcion = null;
 		int i;
 		do {
 			i = leerEntero("Elige una opción");
 			try {
-				opcion = opcion.get(i);
+				opcion = Opcion.get(i);
 			} catch (OperationNotSupportedException e) {
 				System.out.printf("%n%s%n%n", e.getMessage());
 			}

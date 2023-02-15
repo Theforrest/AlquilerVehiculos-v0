@@ -99,11 +99,9 @@ public class Alquiler {
 	public int getPrecio() {
 		int precio = 0;
 		if (fechaDevolucion != null) {
-			precio = ((PRECIO_DIA)
-					+ turismo.getCilindrada() / 10) * (int)(ChronoUnit.DAYS.between(fechaAlquiler, fechaDevolucion));
+			precio = ((PRECIO_DIA) + turismo.getCilindrada() / 10) * (int)(ChronoUnit.DAYS.between(fechaAlquiler, fechaDevolucion));
 		}
-		
-
+	
 		return precio;
 	}
 
